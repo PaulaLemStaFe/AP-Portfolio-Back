@@ -48,11 +48,21 @@ public class UserController {
         return new ResponseEntity(user, HttpStatus.OK);
     }
     
-    @PutMapping("/edit")
-    public ResponseEntity<User> editUser(@RequestBody User user) {
+    @PutMapping("/edit/{idUser}")
+    public ResponseEntity<?> editUser(@PathVariable("idUser") Long idUser,
+                                             @RequestBody User userDto) {
         
-        User editUser = userService.editUser(user);
-        return new ResponseEntity<>(editUser, HttpStatus.OK);
+        User user = userService.getIdUser(idUser).orElse(null);
+        
+        user.setNameUser(userDto.getNameUser());
+        user.setTitleUser(userDto.getTitleUser());
+        user.setUrlImgprofileUser(userDto.getUrlImgprofileUser());
+        user.setText01User(userDto.getText01User());
+        user.setText02User(userDto.getText02User());
+        user.setText03User(userDto.getText03User());
+        
+        userService.addUser(user);
+        return new ResponseEntity(user, HttpStatus.OK);
     }
     
     @DeleteMapping("/delete/{idUser}")

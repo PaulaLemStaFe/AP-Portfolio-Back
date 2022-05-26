@@ -7,6 +7,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Experience {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idExperience;
@@ -24,10 +25,12 @@ public class Experience {
         this.DescriptionExperience = DescriptionExperience;
     }
 
-    public Experience(String enterpriseExperience, String dateExperience, String descriptionExperience) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Experience(String EnterpriseExperience, String DateExperience, String DescriptionExperience) {
+        this.EnterpriseExperience = EnterpriseExperience;
+        this.DateExperience = DateExperience;
+        this.DescriptionExperience = DescriptionExperience;
     }
-
+    
     public Long getIdExperience() {
         return idExperience;
     }
